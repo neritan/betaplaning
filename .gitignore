@@ -1,0 +1,13 @@
+*/node_modules
+*/coverage
+.nyc_output
+.DS_Store
+*.log
+.vscode
+
+*/dist
+*/compiled
+docs
+package.lock
+
+yarn-error.log
