@@ -25,6 +25,12 @@ const mongoose = require('mongoose');
    timestamps: true
  });
 
+ taskSchema.virtual('ownerUser', {
+  ref: 'User',
+  localField: 'owner',
+  foreignField: '_id'
+});
+
  const Task = mongoose.model('Task', taskSchema);
 
  module.exports = Task;
