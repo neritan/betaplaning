@@ -1,8 +1,18 @@
-var express = require('express');
+const express = require('express');
 require('./src/config/mongoose.config');
+const userRoutes = require('./src/routes/user');
+const tasksRoutes = require('./src/routes/tasks');
+const usersWithTasksRoutes = require('./src/routes/usersWithTasks');
 
-var app = express();
+const app = express();
+cosn
+app.use(express.json());
+app.use(userRoutes);
+app.use(tasksRoutes);
+app.use(usersWithTasksRoutes);
 
-const port = 3080;
-
-app.listen( port, () => console.log(`Listening on port: ${port}`) );
+// Start server
+const PORT = process.env.PORT || 3080;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});
