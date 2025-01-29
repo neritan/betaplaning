@@ -5,7 +5,7 @@ const tasksRoutes = require('./src/routes/tasks');
 const usersWithTasksRoutes = require('./src/routes/usersWithTasks');
 
 const app = express();
-cosn
+
 app.use(express.json());
 app.use(userRoutes);
 app.use(tasksRoutes);

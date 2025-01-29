@@ -1,13 +1,15 @@
-*/node_modules
-*/coverage
+node_modules
+coverage
 .nyc_output
 .DS_Store
 *.log
 .vscode
+.env
 
-*/dist
-*/compiled
+dist
+compiled
 docs
 package.lock
 
 yarn-error.log
+
