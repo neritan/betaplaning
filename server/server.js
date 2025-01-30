@@ -3,10 +3,15 @@ require('./src/config/mongoose.config');
 const userRoutes = require('./src/routes/user');
 const tasksRoutes = require('./src/routes/tasks');
 const usersWithTasksRoutes = require('./src/routes/usersWithTasks');
-
+const cors = require('cors');
+// Add cors
 const app = express();
 
-app.use(express.json());
+app.use(
+    cors(),
+    express.json(),
+    express.urlencoded({extended: true})
+);
 app.use(userRoutes);
 app.use(tasksRoutes);
 app.use(usersWithTasksRoutes);

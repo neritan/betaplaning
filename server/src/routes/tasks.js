@@ -25,11 +25,18 @@ app.route('/api/tasks')
                 .sort(sort)
                 .limit(parseInt(req.query.limit) || 10)
                 .skip(parseInt(req.query.skip) || 0);
+            console.log(".")    
             res.send(tasks);
         } catch (e) {
             res.status(500).send(e);
         }
-    });
+    })
+    .post(async (req, res) => {
+        const task = new Task(req.body);
+
+        await task.save();
+        res.status(201).send(task);
+    });;
 
 app.route('/api/tasks/:taskId')
     .patch(async (req, res) => {
