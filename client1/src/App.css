@@ -45,6 +45,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  background-color: white;
  }
  .text-right{
   text-align: right;
@@ -90,3 +91,4 @@
  .task_edit form input,label,button{
   margin:5px 10px!important;
  }
+
