@@ -16,8 +16,10 @@ export const getById = (url) => {
 export const create = (url, payload) => {
     return new Promise((resolve, reject) => {
         axios.post(url, payload).then(res => resolve(res.data))
-        .catch(err => reject(err));
+        .catch(err => reject(err));        
     })
 } 
+
+
 
 //export const update =
