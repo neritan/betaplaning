@@ -1,5 +1,6 @@
 const express = require('express');
 const Task = require('../model/task');
+const taskService = require('../services/tasks');
 const app = express();
 
 app.route('/api/tasks')
@@ -36,18 +37,25 @@ app.route('/api/tasks')
 
         await task.save();
         res.status(201).send(task);
-    });;
+    });
 
 app.route('/api/tasks/:taskId')
+    .get(async (req, res) => {
+        try {
+            const task = await taskService.getTaskById(req.params.taskId);
+            res.send(task);
+        } catch (e) {
+            res.status(404).send(e.message);
+        }
+    })
     .patch(async (req, res) => {
         const updates = Object.keys(req.body);
-        const allowedUpdates = ['title', 'description', 'completed', 'dueDate'];
+        const allowedUpdates = ['title', 'description', 'completed', 'dueDate', 'owner'];
         const isValidOperation = updates.every(update => allowedUpdates.includes(update));
 
         if (!isValidOperation) {
             return res.status(400).send({ error: 'Invalid updates!' });
         }
-
         try {
             const task = await Task.findById(req.params.taskId);
             if (!task) {
@@ -59,6 +67,17 @@ app.route('/api/tasks/:taskId')
             res.send(task);
         } catch (e) {
             res.status(400).send(e);
+        }
+    })
+    .delete(async (req, res) => {
+        try {
+            const task = await taskService.deleteTask(req.params.taskId);
+            if (!task) {
+                return res.status(404).send('Task not found');
+            }
+            res.send(task);
+        } catch (e) {
+            res.status(500).send(e);
         }
     });
 
