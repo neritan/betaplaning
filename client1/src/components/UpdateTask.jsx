@@ -47,7 +47,7 @@ const UpdateTask = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        update(`${process.env.API_URL}/tasks/${taskId}`, task)
+        update(`http://localhost:3080/api/tasks/${taskId}`, task)
             .then(() => {
                 navigate("/tasks");
             })
